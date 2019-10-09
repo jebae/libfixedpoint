@@ -1,0 +1,10 @@
+.DS_Store
+*.out
+*.a
+*.sw*
+*.*.sw*
+.vscode
+objs
+test
+dumbmain.c
+*.dSYM
