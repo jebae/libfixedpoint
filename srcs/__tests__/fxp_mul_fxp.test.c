@@ -77,6 +77,8 @@ void		test_fxp_mul_fxp_case2(void)
 	a.e = -12;
 	b.e = -14;
 
+	res = fxp_mul_fxp(&a, &b, &c);
+
 	test(
 		res == FXP_SUCCESS,
 		"fxp_mul_fxp : return value"
@@ -88,7 +90,7 @@ void		test_fxp_mul_fxp_case2(void)
 	);
 
 	test(
-		c.num.occupied == -26,
+		c.num.occupied == 6,
 		"fxp_mul_fxp : c.num.occupied"
 	);
 
@@ -131,6 +133,8 @@ void		test_fxp_mul_fxp_case3(void)
 	a.e = -12;
 	b.e = -14;
 
+	res = fxp_mul_fxp(&a, &b, &c);
+
 	test(
 		res == FXP_SUCCESS,
 		"fxp_mul_fxp : return value"
@@ -142,7 +146,7 @@ void		test_fxp_mul_fxp_case3(void)
 	);
 
 	test(
-		c.num.occupied == -26,
+		c.num.occupied == 6,
 		"fxp_mul_fxp : c.num.occupied"
 	);
 
@@ -183,6 +187,8 @@ void		test_fxp_mul_fxp_case4(void)
 	a.e = 0;
 	b.e = 0;
 
+	res = fxp_mul_fxp(&a, &b, &c);
+
 	test(
 		res == FXP_SUCCESS,
 		"fxp_mul_fxp : return value"
@@ -213,3 +219,5 @@ void		test_fxp_mul_fxp_case4(void)
 	free(b.num.data);
 	free(c.num.data);
 }
+
+// case compact

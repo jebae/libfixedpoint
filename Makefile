@@ -42,6 +42,7 @@ LIBS = -L . -lfixedpoint\
 # srcs
 SRCS = fxp_new.c\
 	fxp_init.c\
+	fxp_compact.c\
 
 # objs
 OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
