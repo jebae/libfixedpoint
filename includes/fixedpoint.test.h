@@ -19,6 +19,7 @@ void		test_fxp_mul_fxp_case1(void);
 void		test_fxp_mul_fxp_case2(void);
 void		test_fxp_mul_fxp_case3(void);
 void		test_fxp_mul_fxp_case4(void);
+void		test_fxp_mul_fxp_case5(void);
 
 /*
 ** tes fxp_compact

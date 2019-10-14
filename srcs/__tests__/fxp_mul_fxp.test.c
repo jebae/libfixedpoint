@@ -9,8 +9,9 @@ void		test_fxp_mul_fxp_case1(void)
 	t_fixedpoint	c;
 	int				res;
 
-	a = fxp_new(&a, 1, BI_SIGN_POSITIVE);
-	b = fxp_new(&b, 1, BI_SIGN_POSITIVE);
+	fxp_new(&a, 1, BI_SIGN_POSITIVE);
+	fxp_new(&b, 1, BI_SIGN_POSITIVE);
+	fxp_new(&c, 1, BI_SIGN_POSITIVE);
 	bi_push(&(a.num), 0x3a);
 	bi_push(&(a.num), 0x01);
 	bi_push(&(b.num), 0x1d);
@@ -62,10 +63,11 @@ void		test_fxp_mul_fxp_case2(void)
 	t_fixedpoint	b;
 	t_fixedpoint	c;
 	int				res;
-	char			expected[6] = { 0x55, 0x2c, 0x77, 0xbe, 0xfd, 0x89 };
+	unsigned char	expected[7] = { 0x55, 0x2c, 0x77, 0xbe, 0xfd, 0x89, 0x0c };
 
-	a = fxp_new(&a, 1, BI_SIGN_POSITIVE);
-	b = fxp_new(&b, 1, BI_SIGN_POSITIVE);
+	fxp_new(&a, 1, BI_SIGN_POSITIVE);
+	fxp_new(&b, 1, BI_SIGN_POSITIVE);
+	fxp_new(&c, 1, BI_SIGN_POSITIVE);
 	bi_push(&(a.num), 0xdd);
 	bi_push(&(a.num), 0x0b);
 	bi_push(&(a.num), 0x89);
@@ -90,7 +92,7 @@ void		test_fxp_mul_fxp_case2(void)
 	);
 
 	test(
-		c.num.occupied == 6,
+		c.num.occupied == 7,
 		"fxp_mul_fxp : c.num.occupied"
 	);
 
@@ -118,10 +120,11 @@ void		test_fxp_mul_fxp_case3(void)
 	t_fixedpoint	b;
 	t_fixedpoint	c;
 	int				res;
-	char			expected[6] = { 0x55, 0x2c, 0x77, 0xbe, 0xfd, 0x89 };
+	unsigned char	expected[7] = { 0x55, 0x2c, 0x77, 0xbe, 0xfd, 0x89, 0x0c };
 
-	a = fxp_new(&a, 1, BI_SIGN_NEGATIVE);
-	b = fxp_new(&b, 1, BI_SIGN_POSITIVE);
+	fxp_new(&a, 1, BI_SIGN_NEGATIVE);
+	fxp_new(&b, 1, BI_SIGN_POSITIVE);
+	fxp_new(&c, 1, BI_SIGN_POSITIVE);
 	bi_push(&(a.num), 0xdd);
 	bi_push(&(a.num), 0x0b);
 	bi_push(&(a.num), 0x89);
@@ -146,7 +149,7 @@ void		test_fxp_mul_fxp_case3(void)
 	);
 
 	test(
-		c.num.occupied == 6,
+		c.num.occupied == 7,
 		"fxp_mul_fxp : c.num.occupied"
 	);
 
@@ -166,7 +169,7 @@ void		test_fxp_mul_fxp_case3(void)
 	free(c.num.data);
 }
 
-// 12345678.0 * 98765.0
+// 12345678.0 * 98765.0 (compact needed)
 void		test_fxp_mul_fxp_case4(void)
 {
 	printf(KYEL "test_fxp_mul_fxp_case4\n" KNRM);
@@ -174,10 +177,11 @@ void		test_fxp_mul_fxp_case4(void)
 	t_fixedpoint	b;
 	t_fixedpoint	c;
 	int				res;
-	char			expected[6] = { 0x76, 0x39, 0x30, 0xe5, 0x1b, 0x01 };
+	unsigned char	expected[5] = { 0xbf, 0x05, 0xb8, 0x63, 0x1c };
 
-	a = fxp_new(&a, 1, BI_SIGN_NEGATIVE);
-	b = fxp_new(&b, 1, BI_SIGN_POSITIVE);
+	fxp_new(&a, 1, BI_SIGN_NEGATIVE);
+	fxp_new(&b, 1, BI_SIGN_POSITIVE);
+	fxp_new(&c, 1, BI_SIGN_POSITIVE);
 	bi_push(&(a.num), 0x4e);
 	bi_push(&(a.num), 0x61);
 	bi_push(&(a.num), 0xbc);
@@ -200,7 +204,7 @@ void		test_fxp_mul_fxp_case4(void)
 	);
 
 	test(
-		c.num.occupied == 6,
+		c.num.occupied == 5,
 		"fxp_mul_fxp : c.num.occupied"
 	);
 
@@ -211,7 +215,7 @@ void		test_fxp_mul_fxp_case4(void)
 		);
 
 	test(
-		c.e == 0,
+		c.e == 1,
 		"fxp_mul_fxp : c.e"
 	);
 
@@ -220,4 +224,60 @@ void		test_fxp_mul_fxp_case4(void)
 	free(c.num.data);
 }
 
-// case compact
+// case compact (10000000 * 0.6780000)
+void		test_fxp_mul_fxp_case5(void)
+{
+	printf(KYEL "test_fxp_mul_fxp_case5\n" KNRM);
+	t_fixedpoint	a;
+	t_fixedpoint	b;
+	t_fixedpoint	c;
+	int				res;
+
+	fxp_new(&a, 1, BI_SIGN_POSITIVE);
+	fxp_new(&b, 1, BI_SIGN_POSITIVE);
+	fxp_new(&c, 1, BI_SIGN_POSITIVE);
+	bi_push(&(a.num), 0x80);
+	bi_push(&(a.num), 0x96);
+	bi_push(&(a.num), 0x98);
+	bi_push(&(b.num), 0x60);
+	bi_push(&(b.num), 0x74);
+	bi_push(&(b.num), 0x67);
+	a.e = 0;
+	b.e = -7;
+
+	res = fxp_mul_fxp(&a, &b, &c);
+
+	test(
+		res == FXP_SUCCESS,
+		"fxp_mul_fxp : return value"
+	);
+
+	test(
+		c.num.sign == BI_SIGN_POSITIVE,
+		"fxp_mul_fxp : c.num.sign"
+	);
+
+	test(
+		c.num.occupied == 2,
+		"fxp_mul_fxp : c.num.occupied"
+	);
+
+	test(
+		c.num.data[0] == 0xa6,
+		"fxp_mul_fxp : c.num.data[0]"
+	);
+
+	test(
+		c.num.data[1] == 0x02,
+		"fxp_mul_fxp : c.num.data[1]"
+	);
+
+	test(
+		c.e == 4,
+		"fxp_mul_fxp : c.e"
+	);
+
+	free(a.num.data);
+	free(b.num.data);
+	free(c.num.data);
+}

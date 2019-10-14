@@ -7,10 +7,11 @@ int		main(void)
 	test_fxp_init_case1();
 
 	// fxp_mul_fxp
-	// test_fxp_mul_fxp_case1();
-	// test_fxp_mul_fxp_case2();
-	// test_fxp_mul_fxp_case3();
-	// test_fxp_mul_fxp_case4();
+	test_fxp_mul_fxp_case1();
+	test_fxp_mul_fxp_case2();
+	test_fxp_mul_fxp_case3();
+	test_fxp_mul_fxp_case4();
+	test_fxp_mul_fxp_case5();
 
 	// fxp_compact
 	test_fxp_compact_case1();
