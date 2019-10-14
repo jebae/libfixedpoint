@@ -147,6 +147,7 @@ void		test_fxp_compact_case4(void)
 	int				res;
 
 	fxp_new(&fxp, 1, BI_SIGN_NEGATIVE);
+	fxp.e = -45;
 
     res = fxp_compact(&fxp);
 

@@ -2,6 +2,7 @@
 # define FIXEDPOINT_H
 
 # include "bigint.h"
+# include "libft.h"
 
 # define FXP_SUCCESS		0
 # define FXP_FAIL			1

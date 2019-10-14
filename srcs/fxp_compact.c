@@ -20,16 +20,19 @@ int     		fxp_compact(t_fixedpoint *fxp)
 	i = 0;
 	while (i < bcd.occupied && (bcd.data[i] & 0x0f) == 0)
 	{
-		shift += 4;
+		shift += 1;
 		if (bcd.data[i] != 0)
 			break ;
-		shift += 4;
+		shift += 1;
 		i++;
 	}
-	bi_right_shift(&bcd, shift, &bcd);
+	bi_right_shift(&bcd, shift * 4, &bcd);
 	if (bi_rev_double_dabble(&bcd, &(fxp->num)) == BI_FAIL)
 		return (handle_fail(&bcd));
-	fxp->e += shift / 4;
+	if (fxp->num.occupied == 0)
+		fxp->e = 0;
+	else
+		fxp->e += shift;
 	ft_memdel((void **)&bcd.data);	
 	return (FXP_SUCCESS);
 }
