@@ -8,7 +8,6 @@ static int		handle_fail(t_bigint *bcd)
 
 int     		fxp_compact(t_fixedpoint *fxp)
 {
-	size_t		i;
 	size_t		shift;
 	t_bigint	bcd;
 	
@@ -16,17 +15,7 @@ int     		fxp_compact(t_fixedpoint *fxp)
 		return (FXP_FAIL);
 	if (bi_double_dabble(&(fxp->num), &bcd) == BI_FAIL)
 		return (handle_fail(&bcd));
-	shift = 0;
-	i = 0;
-	while (i < bcd.occupied && (bcd.data[i] & 0x0f) == 0)
-	{
-		shift += 1;
-		if (bcd.data[i] != 0)
-			break ;
-		shift += 1;
-		i++;
-	}
-	bi_right_shift(&bcd, shift * 4, &bcd);
+	shift = bcd_rm_trailing_zero(&bcd);
 	if (bi_rev_double_dabble(&bcd, &(fxp->num)) == BI_FAIL)
 		return (handle_fail(&bcd));
 	if (fxp->num.occupied == 0)

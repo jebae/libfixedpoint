@@ -44,6 +44,7 @@ SRCS = fxp_new.c\
 	fxp_init.c\
 	fxp_compact.c\
 	fxp_mul_fxp.c\
+	fxp_round.c\
 
 # objs
 OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))

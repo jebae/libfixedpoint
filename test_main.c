@@ -23,9 +23,9 @@ int		main(void)
 	test_fxp_mul_fxp_case5();
 	test_fxp_mul_fxp_case6();
 	test_fxp_mul_fxp_case7();
-	test_fxp_mul_fxp_case8();
 
 	test_fxp_round_case1();
+	
 	test_fxp_round_case2();
 	test_fxp_round_case3();
 	test_fxp_round_case4();
@@ -50,6 +50,5 @@ int		main(void)
 	test_fxp_round_case23();
 	test_fxp_round_case24();
 	test_fxp_round_case25();
-
 	// while (1);
 }
