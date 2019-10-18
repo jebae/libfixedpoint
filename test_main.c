@@ -2,10 +2,6 @@
 
 int		main(void)
 {
-	// memory management
-	test_fxp_new_case1();
-	test_fxp_init_case1();
-
 	// fxp_compact
 	test_fxp_compact_case1();
 	test_fxp_compact_case2();
@@ -24,8 +20,8 @@ int		main(void)
 	test_fxp_mul_fxp_case6();
 	test_fxp_mul_fxp_case7();
 
-	test_fxp_round_case1();
-	
+	// fxp_round
+	test_fxp_round_case1();	
 	test_fxp_round_case2();
 	test_fxp_round_case3();
 	test_fxp_round_case4();
@@ -50,5 +46,7 @@ int		main(void)
 	test_fxp_round_case23();
 	test_fxp_round_case24();
 	test_fxp_round_case25();
+	test_fxp_round_case26();
+	test_fxp_round_case27();
 	// while (1);
 }

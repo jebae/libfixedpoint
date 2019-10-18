@@ -40,8 +40,8 @@ LIBS = -L . -lfixedpoint\
 	-L $(BIGINT_PATH) -lbigint\
 
 # srcs
-SRCS = fxp_new.c\
-	fxp_init.c\
+SRCS = fxp_init.c\
+	fxp_del.c\
 	fxp_compact.c\
 	fxp_mul_fxp.c\
 	fxp_round.c\

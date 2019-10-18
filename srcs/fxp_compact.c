@@ -2,7 +2,7 @@
 
 static int		handle_fail(t_bigint *bcd)
 {
-	ft_memdel((void **)&(bcd->data));
+	bi_del(bcd);
 	return (FXP_FAIL);
 }
 
@@ -10,10 +10,9 @@ int     		fxp_compact(t_fixedpoint *fxp)
 {
 	size_t		shift;
 	t_bigint	bcd;
-	
-	if (bi_new(&bcd, 1, BI_SIGN_POSITIVE) == BI_FAIL)
-		return (FXP_FAIL);
-	if (bi_double_dabble(&(fxp->num), &bcd) == BI_FAIL)
+
+	bi_init(&bcd);
+	if (bi_double_dabble(&fxp->num, &bcd) == BI_FAIL)
 		return (handle_fail(&bcd));
 	shift = bcd_rm_trailing_zero(&bcd);
 	if (bi_rev_double_dabble(&bcd, &(fxp->num)) == BI_FAIL)
@@ -22,6 +21,6 @@ int     		fxp_compact(t_fixedpoint *fxp)
 		fxp->e = 0;
 	else
 		fxp->e += shift;
-	ft_memdel((void **)&bcd.data);	
+	bi_del(&bcd);
 	return (FXP_SUCCESS);
 }

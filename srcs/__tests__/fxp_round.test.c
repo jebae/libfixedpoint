@@ -8,8 +8,8 @@ void		test_fxp_round_case1(void)
 	t_fixedpoint	rounded;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
-	fxp_new(&rounded, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
+	fxp_init(&rounded);
 	bi_push(&(fxp.num), 0x3a);
 	bi_push(&(fxp.num), 0x01);
 	fxp.e = -2;
@@ -36,8 +36,8 @@ void		test_fxp_round_case1(void)
 		"fxp_round : rounded.num.data[0]"
 	);
 
-	free(fxp.num.data);
-	free(rounded.num.data);
+	fxp_del(&fxp);
+	fxp_del(&rounded);
 }
 
 // case 0.999, round 1
@@ -48,10 +48,11 @@ void		test_fxp_round_case2(void)
 	t_fixedpoint	rounded;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
-	fxp_new(&rounded, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
+	fxp_init(&rounded);
 	bi_push(&(fxp.num), 0xe7);
 	bi_push(&(fxp.num), 0x03);
+	fxp.num.sign = BI_SIGN_NEGATIVE;
 	fxp.e = -3;
 
 	res = fxp_round(&fxp, 1, &rounded);
@@ -67,6 +68,11 @@ void		test_fxp_round_case2(void)
 	);
 
 	test(
+		rounded.num.sign == fxp.num.sign,
+		"fxp_round : rounded.num.sign"
+	);
+
+	test(
 		rounded.num.occupied == 1,
 		"fxp_round : rounded.num.occupied"
 	);
@@ -76,8 +82,8 @@ void		test_fxp_round_case2(void)
 		"fxp_round : rounded.num.data[0]"
 	);
 
-	free(fxp.num.data);
-	free(rounded.num.data);
+	fxp_del(&fxp);
+	fxp_del(&rounded);
 }
 
 // case 0.999, round 2
@@ -88,8 +94,8 @@ void		test_fxp_round_case3(void)
 	t_fixedpoint	rounded;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
-	fxp_new(&rounded, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
+	fxp_init(&rounded);
 	bi_push(&(fxp.num), 0xe7);
 	bi_push(&(fxp.num), 0x03);
 	fxp.e = -3;
@@ -116,8 +122,8 @@ void		test_fxp_round_case3(void)
 		"fxp_round : rounded.num.data[0]"
 	);
 
-	free(fxp.num.data);
-	free(rounded.num.data);
+	fxp_del(&fxp);
+	fxp_del(&rounded);
 }
 
 // case 0.999, round 3
@@ -128,8 +134,8 @@ void		test_fxp_round_case4(void)
 	t_fixedpoint	rounded;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
-	fxp_new(&rounded, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
+	fxp_init(&rounded);
 	bi_push(&(fxp.num), 0xe7);
 	bi_push(&(fxp.num), 0x03);
 	fxp.e = -3;
@@ -161,8 +167,8 @@ void		test_fxp_round_case4(void)
 		"fxp_round : rounded.num.data[1]"
 	);
 
-	free(fxp.num.data);
-	free(rounded.num.data);
+	fxp_del(&fxp);
+	fxp_del(&rounded);
 }
 
 // case 0.999, round 0
@@ -173,8 +179,8 @@ void		test_fxp_round_case5(void)
 	t_fixedpoint	rounded;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
-	fxp_new(&rounded, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
+	fxp_init(&rounded);
 	bi_push(&(fxp.num), 0xe7);
 	bi_push(&(fxp.num), 0x03);
 	fxp.e = -3;
@@ -201,8 +207,8 @@ void		test_fxp_round_case5(void)
 		"fxp_round : rounded.num.data[0]"
 	);
 
-	free(fxp.num.data);
-	free(rounded.num.data);
+	fxp_del(&fxp);
+	fxp_del(&rounded);
 }
 
 // case 0.0009999, round 7
@@ -213,8 +219,8 @@ void		test_fxp_round_case6(void)
 	t_fixedpoint	rounded;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
-	fxp_new(&rounded, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
+	fxp_init(&rounded);
 	bi_push(&(fxp.num), 0x0f);
 	bi_push(&(fxp.num), 0x27);
 	fxp.e = -7;
@@ -246,8 +252,8 @@ void		test_fxp_round_case6(void)
 		"fxp_round : rounded.num.data[1]"
 	);
 
-	free(fxp.num.data);
-	free(rounded.num.data);
+	fxp_del(&fxp);
+	fxp_del(&rounded);
 }
 
 // case 0.0009999, round 6
@@ -258,8 +264,8 @@ void		test_fxp_round_case7(void)
 	t_fixedpoint	rounded;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
-	fxp_new(&rounded, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
+	fxp_init(&rounded);
 	bi_push(&(fxp.num), 0x0f);
 	bi_push(&(fxp.num), 0x27);
 	fxp.e = -7;
@@ -286,8 +292,8 @@ void		test_fxp_round_case7(void)
 		"fxp_round : rounded.num.data[0]"
 	);
 
-	free(fxp.num.data);
-	free(rounded.num.data);
+	fxp_del(&fxp);
+	fxp_del(&rounded);
 }
 
 // case 0.0009999, round 3
@@ -298,8 +304,8 @@ void		test_fxp_round_case8(void)
 	t_fixedpoint	rounded;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
-	fxp_new(&rounded, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
+	fxp_init(&rounded);
 	bi_push(&(fxp.num), 0x0f);
 	bi_push(&(fxp.num), 0x27);
 	fxp.e = -7;
@@ -326,8 +332,8 @@ void		test_fxp_round_case8(void)
 		"fxp_round : rounded.num.data[0]"
 	);
 
-	free(fxp.num.data);
-	free(rounded.num.data);
+	fxp_del(&fxp);
+	fxp_del(&rounded);
 }
 
 // case 0.0009999, round 2
@@ -338,8 +344,8 @@ void		test_fxp_round_case9(void)
 	t_fixedpoint	rounded;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
-	fxp_new(&rounded, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
+	fxp_init(&rounded);
 	bi_push(&(fxp.num), 0x0f);
 	bi_push(&(fxp.num), 0x27);
 	fxp.e = -7;
@@ -361,8 +367,8 @@ void		test_fxp_round_case9(void)
 		"fxp_round : rounded.num.occupied"
 	);
 
-	free(fxp.num.data);
-	free(rounded.num.data);
+	fxp_del(&fxp);
+	fxp_del(&rounded);
 }
 
 // case 0.0009999, round 0
@@ -373,8 +379,8 @@ void		test_fxp_round_case10(void)
 	t_fixedpoint	rounded;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
-	fxp_new(&rounded, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
+	fxp_init(&rounded);
 	bi_push(&(fxp.num), 0x0f);
 	bi_push(&(fxp.num), 0x27);
 	fxp.e = -7;
@@ -396,8 +402,8 @@ void		test_fxp_round_case10(void)
 		"fxp_round : rounded.num.occupied"
 	);
 
-	free(fxp.num.data);
-	free(rounded.num.data);
+	fxp_del(&fxp);
+	fxp_del(&rounded);
 }
 
 // case 0.000898989, round 8
@@ -408,8 +414,8 @@ void		test_fxp_round_case11(void)
 	t_fixedpoint	rounded;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
-	fxp_new(&rounded, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
+	fxp_init(&rounded);
 	bi_push(&(fxp.num), 0xad);
 	bi_push(&(fxp.num), 0xb7);
 	bi_push(&(fxp.num), 0x0d);
@@ -447,8 +453,8 @@ void		test_fxp_round_case11(void)
 		"fxp_round : rounded.num.data[2]"
 	);
 
-	free(fxp.num.data);
-	free(rounded.num.data);
+	fxp_del(&fxp);
+	fxp_del(&rounded);
 }
 
 // case 0.000898989, round 7
@@ -459,8 +465,8 @@ void		test_fxp_round_case12(void)
 	t_fixedpoint	rounded;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
-	fxp_new(&rounded, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
+	fxp_init(&rounded);
 	bi_push(&(fxp.num), 0xad);
 	bi_push(&(fxp.num), 0xb7);
 	bi_push(&(fxp.num), 0x0d);
@@ -493,8 +499,8 @@ void		test_fxp_round_case12(void)
 		"fxp_round : rounded.num.data[1]"
 	);
 
-	free(fxp.num.data);
-	free(rounded.num.data);
+	fxp_del(&fxp);
+	fxp_del(&rounded);
 }
 
 // case 0.0009999, round 8
@@ -505,8 +511,8 @@ void		test_fxp_round_case13(void)
 	t_fixedpoint	rounded;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
-	fxp_new(&rounded, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
+	fxp_init(&rounded);
 	bi_push(&(fxp.num), 0x0f);
 	bi_push(&(fxp.num), 0x27);
 	fxp.e = -7;
@@ -538,8 +544,8 @@ void		test_fxp_round_case13(void)
 		"fxp_round : rounded.num.data[1]"
 	);
 
-	free(fxp.num.data);
-	free(rounded.num.data);
+	fxp_del(&fxp);
+	fxp_del(&rounded);
 }
 
 // case 0.0009999, round 9
@@ -550,8 +556,8 @@ void		test_fxp_round_case14(void)
 	t_fixedpoint	rounded;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
-	fxp_new(&rounded, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
+	fxp_init(&rounded);
 	bi_push(&(fxp.num), 0x0f);
 	bi_push(&(fxp.num), 0x27);
 	fxp.e = -7;
@@ -583,8 +589,8 @@ void		test_fxp_round_case14(void)
 		"fxp_round : rounded.num.data[1]"
 	);
 
-	free(fxp.num.data);
-	free(rounded.num.data);
+	fxp_del(&fxp);
+	fxp_del(&rounded);
 }
 
 // case 123.0009999, round 5
@@ -595,8 +601,8 @@ void		test_fxp_round_case15(void)
 	t_fixedpoint	rounded;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
-	fxp_new(&rounded, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
+	fxp_init(&rounded);
 	bi_push(&(fxp.num), 0x8f);
 	bi_push(&(fxp.num), 0x76);
 	bi_push(&(fxp.num), 0x50);
@@ -635,8 +641,8 @@ void		test_fxp_round_case15(void)
 		"fxp_round : rounded.num.data[2]"
 	);
 
-	free(fxp.num.data);
-	free(rounded.num.data);
+	fxp_del(&fxp);
+	fxp_del(&rounded);
 }
 
 // case 123.0009999, round 3
@@ -647,8 +653,8 @@ void		test_fxp_round_case16(void)
 	t_fixedpoint	rounded;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
-	fxp_new(&rounded, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
+	fxp_init(&rounded);
 	bi_push(&(fxp.num), 0x8f);
 	bi_push(&(fxp.num), 0x76);
 	bi_push(&(fxp.num), 0x50);
@@ -687,8 +693,8 @@ void		test_fxp_round_case16(void)
 		"fxp_round : rounded.num.data[2]"
 	);
 
-	free(fxp.num.data);
-	free(rounded.num.data);
+	fxp_del(&fxp);
+	fxp_del(&rounded);
 }
 
 // case 123.0009999, round 2
@@ -699,8 +705,8 @@ void		test_fxp_round_case17(void)
 	t_fixedpoint	rounded;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
-	fxp_new(&rounded, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
+	fxp_init(&rounded);
 	bi_push(&(fxp.num), 0x8f);
 	bi_push(&(fxp.num), 0x76);
 	bi_push(&(fxp.num), 0x50);
@@ -729,8 +735,8 @@ void		test_fxp_round_case17(void)
 		"fxp_round : rounded.num.data[0]"
 	);
 
-	free(fxp.num.data);
-	free(rounded.num.data);
+	fxp_del(&fxp);
+	fxp_del(&rounded);
 }
 
 // case 99.9999999, round 6
@@ -741,8 +747,8 @@ void		test_fxp_round_case18(void)
 	t_fixedpoint	rounded;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
-	fxp_new(&rounded, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
+	fxp_init(&rounded);
 	bi_push(&(fxp.num), 0xff);
 	bi_push(&(fxp.num), 0xc9);
 	bi_push(&(fxp.num), 0x9a);
@@ -771,8 +777,8 @@ void		test_fxp_round_case18(void)
 		"fxp_round : rounded.num.data[0]"
 	);
 
-	free(fxp.num.data);
-	free(rounded.num.data);
+	fxp_del(&fxp);
+	fxp_del(&rounded);
 }
 
 // case 99.9999999, round 7
@@ -783,8 +789,8 @@ void		test_fxp_round_case19(void)
 	t_fixedpoint	rounded;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
-	fxp_new(&rounded, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
+	fxp_init(&rounded);
 	bi_push(&(fxp.num), 0xff);
 	bi_push(&(fxp.num), 0xc9);
 	bi_push(&(fxp.num), 0x9a);
@@ -828,8 +834,8 @@ void		test_fxp_round_case19(void)
 		"fxp_round : rounded.num.data[3]"
 	);
 
-	free(fxp.num.data);
-	free(rounded.num.data);
+	fxp_del(&fxp);
+	fxp_del(&rounded);
 }
 
 // case 12345.0, round 3
@@ -840,8 +846,8 @@ void		test_fxp_round_case20(void)
 	t_fixedpoint	rounded;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
-	fxp_new(&rounded, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
+	fxp_init(&rounded);
 	bi_push(&(fxp.num), 0x39);
 	bi_push(&(fxp.num), 0x30);
 	fxp.e = 0;
@@ -873,8 +879,8 @@ void		test_fxp_round_case20(void)
 		"fxp_round : rounded.num.data[1]"
 	);
 
-	free(fxp.num.data);
-	free(rounded.num.data);
+	fxp_del(&fxp);
+	fxp_del(&rounded);
 }
 
 // case 0
@@ -885,8 +891,9 @@ void		test_fxp_round_case21(void)
 	t_fixedpoint	rounded;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
-	fxp_new(&rounded, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
+	fxp_init(&rounded);
+	rounded.num.sign = BI_SIGN_NEGATIVE;
 
 	res = fxp_round(&fxp, 3, &rounded);
 
@@ -901,12 +908,17 @@ void		test_fxp_round_case21(void)
 	);
 
 	test(
+		rounded.num.sign == BI_SIGN_POSITIVE,
+		"fxp_round : rounded.num.sign"
+	);
+
+	test(
 		rounded.num.occupied == 0,
 		"fxp_round : rounded.num.occupied"
 	);
 
-	free(fxp.num.data);
-	free(rounded.num.data);
+	fxp_del(&fxp);
+	fxp_del(&rounded);
 }
 
 // case 123.0009999, round -1
@@ -917,8 +929,8 @@ void		test_fxp_round_case22(void)
 	t_fixedpoint	rounded;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
-	fxp_new(&rounded, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
+	fxp_init(&rounded);
 	bi_push(&(fxp.num), 0x8f);
 	bi_push(&(fxp.num), 0x76);
 	bi_push(&(fxp.num), 0x50);
@@ -947,8 +959,8 @@ void		test_fxp_round_case22(void)
 		"fxp_round : rounded.num.data[0]"
 	);
 
-	free(fxp.num.data);
-	free(rounded.num.data);
+	fxp_del(&fxp);
+	fxp_del(&rounded);
 }
 
 // case 123.0009999, round -2
@@ -959,8 +971,8 @@ void		test_fxp_round_case23(void)
 	t_fixedpoint	rounded;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
-	fxp_new(&rounded, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
+	fxp_init(&rounded);
 	bi_push(&(fxp.num), 0x8f);
 	bi_push(&(fxp.num), 0x76);
 	bi_push(&(fxp.num), 0x50);
@@ -989,8 +1001,8 @@ void		test_fxp_round_case23(void)
 		"fxp_round : rounded.num.data[0]"
 	);
 
-	free(fxp.num.data);
-	free(rounded.num.data);
+	fxp_del(&fxp);
+	fxp_del(&rounded);
 }
 
 // case 123.0009999, round -3
@@ -1001,8 +1013,8 @@ void		test_fxp_round_case24(void)
 	t_fixedpoint	rounded;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
-	fxp_new(&rounded, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
+	fxp_init(&rounded);
 	bi_push(&(fxp.num), 0x8f);
 	bi_push(&(fxp.num), 0x76);
 	bi_push(&(fxp.num), 0x50);
@@ -1026,8 +1038,8 @@ void		test_fxp_round_case24(void)
 		"fxp_round : rounded.num.occupied"
 	);
 
-	free(fxp.num.data);
-	free(rounded.num.data);
+	fxp_del(&fxp);
+	fxp_del(&rounded);
 }
 
 // case 789770.0, round -3
@@ -1038,8 +1050,8 @@ void		test_fxp_round_case25(void)
 	t_fixedpoint	rounded;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
-	fxp_new(&rounded, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
+	fxp_init(&rounded);
 	bi_push(&(fxp.num), 0x81);
 	bi_push(&(fxp.num), 0x34);
 	bi_push(&(fxp.num), 0x01);
@@ -1067,8 +1079,98 @@ void		test_fxp_round_case25(void)
 		"fxp_round : rounded.num.data[0]"
 	);
 
-	free(fxp.num.data);
-	free(rounded.num.data);
+	fxp_del(&fxp);
+	fxp_del(&rounded);
 }
 
-// case mutable
+// case 0.000898989, round 7 (mutable)
+void		test_fxp_round_case26(void)
+{
+	printf(KYEL "test_fxp_round_case26\n" KNRM);
+	t_fixedpoint	fxp;
+	int				res;
+
+	fxp_init(&fxp);
+	bi_push(&(fxp.num), 0xad);
+	bi_push(&(fxp.num), 0xb7);
+	bi_push(&(fxp.num), 0x0d);
+	fxp.e = -9;
+
+	res = fxp_round(&fxp, 7, &fxp);
+
+	test(
+		res == FXP_SUCCESS,
+		"fxp_round : return value"
+	);
+
+	test(
+		fxp.e == -6,
+		"fxp_round : fxp.e"
+	);
+
+	test(
+		fxp.num.occupied == 2,
+		"fxp_round : fxp.num.occupied"
+	);
+
+	test(
+		fxp.num.data[0] == 0x83,
+		"fxp_round : fxp.num.data[0]"
+	);
+
+	test(
+		fxp.num.data[1] == 0x03,
+		"fxp_round : fxp.num.data[1]"
+	);
+
+	fxp_del(&fxp);
+}
+
+// case 123.0009999, round 5 (mutable)
+void		test_fxp_round_case27(void)
+{
+	printf(KYEL "test_fxp_round_case27\n" KNRM);
+	t_fixedpoint	fxp;
+	int				res;
+
+	fxp_init(&fxp);
+	bi_push(&(fxp.num), 0x8f);
+	bi_push(&(fxp.num), 0x76);
+	bi_push(&(fxp.num), 0x50);
+	bi_push(&(fxp.num), 0x49);
+	fxp.e = -7;
+
+	res = fxp_round(&fxp, 5, &fxp);
+
+	test(
+		res == FXP_SUCCESS,
+		"fxp_round : return value"
+	);
+
+	test(
+		fxp.e == -3,
+		"fxp_round : fxp.e"
+	);
+
+	test(
+		fxp.num.occupied == 3,
+		"fxp_round : fxp.num.occupied"
+	);
+
+	test(
+		fxp.num.data[0] == 0x79,
+		"fxp_round : fxp.num.data[0]"
+	);
+
+	test(
+		fxp.num.data[1] == 0xe0,
+		"fxp_round : fxp.num.data[1]"
+	);
+
+	test(
+		fxp.num.data[2] == 0x01,
+		"fxp_round : fxp.num.data[2]"
+	);
+
+	fxp_del(&fxp);
+}

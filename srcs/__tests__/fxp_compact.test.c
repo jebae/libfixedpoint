@@ -6,7 +6,7 @@ void		test_fxp_compact_case1(void)
 	t_fixedpoint	fxp;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_NEGATIVE);
+	fxp_init(&fxp);
 
     bi_push(&(fxp.num), 0x1c);
     bi_push(&(fxp.num), 0x6a);
@@ -25,7 +25,7 @@ void		test_fxp_compact_case1(void)
     );
 
     test(
-        fxp.num.sign == BI_SIGN_NEGATIVE,
+        fxp.num.sign == BI_SIGN_POSITIVE,
         "fxp_compact : num.sign"
     );
 
@@ -44,7 +44,7 @@ void		test_fxp_compact_case1(void)
         "fxp_compact : num.data[1]"
     );
 
-	free(fxp.num.data);
+	fxp_del(&fxp);
 }
 
 // case 0 in middle (e.g. 80060)
@@ -54,7 +54,7 @@ void		test_fxp_compact_case2(void)
 	t_fixedpoint	fxp;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
 
     bi_push(&(fxp.num), 0xbc);
     bi_push(&(fxp.num), 0x38);
@@ -92,7 +92,7 @@ void		test_fxp_compact_case2(void)
         "fxp_compact : num.data[1]"
     );
 
-	free(fxp.num.data);
+	fxp_del(&fxp);
 }
 
 // case no compact
@@ -103,7 +103,7 @@ void		test_fxp_compact_case3(void)
 	int				res;
     unsigned char   data[4] = { 0x2f, 0xa3, 0xc5, 0x04 };
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
 
     for (int i=0; i < 4; i++)
         bi_push(&(fxp.num), data[i]);
@@ -136,7 +136,7 @@ void		test_fxp_compact_case3(void)
             "fxp_compact : num.data[i]"
         );
 
-	free(fxp.num.data);
+	fxp_del(&fxp);
 }
 
 // case 0
@@ -146,7 +146,8 @@ void		test_fxp_compact_case4(void)
 	t_fixedpoint	fxp;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_NEGATIVE);
+	fxp_init(&fxp);
+	fxp.num.sign = BI_SIGN_NEGATIVE;
 	fxp.e = -45;
 
     res = fxp_compact(&fxp);
@@ -171,7 +172,7 @@ void		test_fxp_compact_case4(void)
         "fxp_compact : num.occupied"
     );
 
-	free(fxp.num.data);
+	fxp_del(&fxp);
 }
 
 // case positive e
@@ -181,7 +182,8 @@ void		test_fxp_compact_case5(void)
 	t_fixedpoint	fxp;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_NEGATIVE);
+	fxp_init(&fxp);
+	fxp.num.sign = BI_SIGN_NEGATIVE;
 
     bi_push(&(fxp.num), 0x1c);
     bi_push(&(fxp.num), 0x6a);
@@ -220,7 +222,7 @@ void		test_fxp_compact_case5(void)
         "fxp_compact : num.data[1]"
     );
 
-	free(fxp.num.data);
+	fxp_del(&fxp);
 }
 
 // case negative e (0.00123000)
@@ -230,7 +232,8 @@ void		test_fxp_compact_case6(void)
 	t_fixedpoint	fxp;
 	int				res;
 
-	fxp_new(&fxp, 1, BI_SIGN_NEGATIVE);
+	fxp_init(&fxp);
+	fxp.num.sign = BI_SIGN_NEGATIVE;
 
     bi_push(&(fxp.num), 0x78);
     bi_push(&(fxp.num), 0xe0);
@@ -264,7 +267,7 @@ void		test_fxp_compact_case6(void)
         "fxp_compact : num.data[0]"
     );
 
-	free(fxp.num.data);
+	fxp_del(&fxp);
 }
 
 // case big (100200300400500600000)
@@ -277,7 +280,7 @@ void		test_fxp_compact_case7(void)
         0x03, 0x8f, 0x51, 0x01, 0x1e, 0x1a, 0x8e
     };
 
-	fxp_new(&fxp, 1, BI_SIGN_POSITIVE);
+	fxp_init(&fxp);
 
     bi_push(&(fxp.num), 0xc0);
     bi_push(&(fxp.num), 0xec);
@@ -318,5 +321,5 @@ void		test_fxp_compact_case7(void)
             "fxp_compact : num.data[i]"
         );
 
-	free(fxp.num.data);
+	fxp_del(&fxp);
 }

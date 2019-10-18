@@ -9,9 +9,9 @@ void		test_fxp_mul_fxp_case1(void)
 	t_fixedpoint	c;
 	int				res;
 
-	fxp_new(&a, 1, BI_SIGN_POSITIVE);
-	fxp_new(&b, 1, BI_SIGN_POSITIVE);
-	fxp_new(&c, 1, BI_SIGN_POSITIVE);
+	fxp_init(&a);
+	fxp_init(&b);
+	fxp_init(&c);
 	bi_push(&(a.num), 0x3a);
 	bi_push(&(a.num), 0x01);
 	bi_push(&(b.num), 0x1d);
@@ -50,9 +50,9 @@ void		test_fxp_mul_fxp_case1(void)
 		"fxp_mul_fxp : c.e"
 	);
 
-	free(a.num.data);
-	free(b.num.data);
-	free(c.num.data);
+	fxp_del(&a);
+	fxp_del(&b);
+	fxp_del(&c);
 }
 
 // 0.031415929821 * 0.00000000112345
@@ -65,9 +65,9 @@ void		test_fxp_mul_fxp_case2(void)
 	int				res;
 	unsigned char	expected[7] = { 0x55, 0x2c, 0x77, 0xbe, 0xfd, 0x89, 0x0c };
 
-	fxp_new(&a, 1, BI_SIGN_POSITIVE);
-	fxp_new(&b, 1, BI_SIGN_POSITIVE);
-	fxp_new(&c, 1, BI_SIGN_POSITIVE);
+	fxp_init(&a);
+	fxp_init(&b);
+	fxp_init(&c);
 	bi_push(&(a.num), 0xdd);
 	bi_push(&(a.num), 0x0b);
 	bi_push(&(a.num), 0x89);
@@ -107,9 +107,9 @@ void		test_fxp_mul_fxp_case2(void)
 		"fxp_mul_fxp : c.e"
 	);
 
-	free(a.num.data);
-	free(b.num.data);
-	free(c.num.data);
+	fxp_del(&a);
+	fxp_del(&b);
+	fxp_del(&c);
 }
 
 // -0.031415929821 * 0.00000000112345
@@ -122,9 +122,9 @@ void		test_fxp_mul_fxp_case3(void)
 	int				res;
 	unsigned char	expected[7] = { 0x55, 0x2c, 0x77, 0xbe, 0xfd, 0x89, 0x0c };
 
-	fxp_new(&a, 1, BI_SIGN_NEGATIVE);
-	fxp_new(&b, 1, BI_SIGN_POSITIVE);
-	fxp_new(&c, 1, BI_SIGN_POSITIVE);
+	fxp_init(&a);
+	fxp_init(&b);
+	fxp_init(&c);
 	bi_push(&(a.num), 0xdd);
 	bi_push(&(a.num), 0x0b);
 	bi_push(&(a.num), 0x89);
@@ -133,6 +133,7 @@ void		test_fxp_mul_fxp_case3(void)
 	bi_push(&(b.num), 0xd9);
 	bi_push(&(b.num), 0xb6);
 	bi_push(&(b.num), 0x01);
+	a.num.sign = BI_SIGN_NEGATIVE;
 	a.e = -12;
 	b.e = -14;
 
@@ -164,9 +165,9 @@ void		test_fxp_mul_fxp_case3(void)
 		"fxp_mul_fxp : c.e"
 	);
 
-	free(a.num.data);
-	free(b.num.data);
-	free(c.num.data);
+	fxp_del(&a);
+	fxp_del(&b);
+	fxp_del(&c);
 }
 
 // 12345678.0 * 98765.0 (compact needed)
@@ -179,15 +180,16 @@ void		test_fxp_mul_fxp_case4(void)
 	int				res;
 	unsigned char	expected[5] = { 0xbf, 0x05, 0xb8, 0x63, 0x1c };
 
-	fxp_new(&a, 1, BI_SIGN_NEGATIVE);
-	fxp_new(&b, 1, BI_SIGN_POSITIVE);
-	fxp_new(&c, 1, BI_SIGN_POSITIVE);
+	fxp_init(&a);
+	fxp_init(&b);
+	fxp_init(&c);
 	bi_push(&(a.num), 0x4e);
 	bi_push(&(a.num), 0x61);
 	bi_push(&(a.num), 0xbc);
 	bi_push(&(b.num), 0xcd);
 	bi_push(&(b.num), 0x81);
 	bi_push(&(b.num), 0x01);
+	a.num.sign = BI_SIGN_NEGATIVE;
 	a.e = 0;
 	b.e = 0;
 
@@ -219,9 +221,9 @@ void		test_fxp_mul_fxp_case4(void)
 		"fxp_mul_fxp : c.e"
 	);
 
-	free(a.num.data);
-	free(b.num.data);
-	free(c.num.data);
+	fxp_del(&a);
+	fxp_del(&b);
+	fxp_del(&c);
 }
 
 // case compact (10000000 * 0.6780000)
@@ -233,9 +235,9 @@ void		test_fxp_mul_fxp_case5(void)
 	t_fixedpoint	c;
 	int				res;
 
-	fxp_new(&a, 1, BI_SIGN_POSITIVE);
-	fxp_new(&b, 1, BI_SIGN_POSITIVE);
-	fxp_new(&c, 1, BI_SIGN_POSITIVE);
+	fxp_init(&a);
+	fxp_init(&b);
+	fxp_init(&c);
 	bi_push(&(a.num), 0x80);
 	bi_push(&(a.num), 0x96);
 	bi_push(&(a.num), 0x98);
@@ -277,9 +279,9 @@ void		test_fxp_mul_fxp_case5(void)
 		"fxp_mul_fxp : c.e"
 	);
 
-	free(a.num.data);
-	free(b.num.data);
-	free(c.num.data);
+	fxp_del(&a);
+	fxp_del(&b);
+	fxp_del(&c);
 }
 
 // case mutable (a = c) 0.031415929821 * 0.00000000112345
@@ -291,8 +293,8 @@ void		test_fxp_mul_fxp_case6(void)
 	int				res;
 	unsigned char	expected[7] = { 0x55, 0x2c, 0x77, 0xbe, 0xfd, 0x89, 0x0c };
 
-	fxp_new(&a, 1, BI_SIGN_POSITIVE);
-	fxp_new(&b, 1, BI_SIGN_POSITIVE);
+	fxp_init(&a);
+	fxp_init(&b);
 	bi_push(&(a.num), 0xdd);
 	bi_push(&(a.num), 0x0b);
 	bi_push(&(a.num), 0x89);
@@ -332,8 +334,8 @@ void		test_fxp_mul_fxp_case6(void)
 		"fxp_mul_fxp : a.e"
 	);
 
-	free(a.num.data);
-	free(b.num.data);
+	fxp_del(&a);
+	fxp_del(&b);
 }
 
 // case mutable (b = c) 0.031415929821 * 0.00000000112345
@@ -345,8 +347,8 @@ void		test_fxp_mul_fxp_case7(void)
 	int				res;
 	unsigned char	expected[7] = { 0x55, 0x2c, 0x77, 0xbe, 0xfd, 0x89, 0x0c };
 
-	fxp_new(&a, 1, BI_SIGN_POSITIVE);
-	fxp_new(&b, 1, BI_SIGN_POSITIVE);
+	fxp_init(&a);
+	fxp_init(&b);
 	bi_push(&(a.num), 0xdd);
 	bi_push(&(a.num), 0x0b);
 	bi_push(&(a.num), 0x89);
@@ -386,6 +388,6 @@ void		test_fxp_mul_fxp_case7(void)
 		"fxp_mul_fxp : b.e"
 	);
 
-	free(a.num.data);
-	free(b.num.data);
+	fxp_del(&a);
+	fxp_del(&b);
 }

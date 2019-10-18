@@ -9,7 +9,7 @@ void		test(int res, const char *msg);
 /*
 ** test memory management
 */
-void		test_fxp_new_case1(void);
+void		test_fxp_init_case1(void);
 void		test_fxp_init_case1(void);
 
 /*
@@ -62,5 +62,7 @@ void		test_fxp_round_case22(void);
 void		test_fxp_round_case23(void);
 void		test_fxp_round_case24(void);
 void		test_fxp_round_case25(void);
+void		test_fxp_round_case26(void);
+void		test_fxp_round_case27(void);
 
 #endif

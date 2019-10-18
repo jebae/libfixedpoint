@@ -50,8 +50,7 @@ int				fxp_round(t_fixedpoint *fxp, long long r, t_fixedpoint *res)
 	long long		pos;
 	t_bigint		bcd;
 
-	if (bi_new(&bcd, 1, BI_SIGN_POSITIVE) == BI_FAIL)
-		return (FXP_FAIL);
+	bi_init(&bcd);
 	if (bi_double_dabble(&fxp->num, &bcd) == BI_FAIL)
 		return (handle_fail(&bcd));
 	len = bcd_len(&bcd);
@@ -69,6 +68,6 @@ int				fxp_round(t_fixedpoint *fxp, long long r, t_fixedpoint *res)
 		res->e = fxp->e + bcd_rm_trailing_zero(&bcd);
 	if (bi_rev_double_dabble(&bcd, &res->num) == BI_FAIL)
 		return (handle_fail(&bcd));
-	ft_memdel((void **)&bcd.data);
+	bi_del(&bcd);
 	return (FXP_SUCCESS);
 }
