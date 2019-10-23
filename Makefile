@@ -44,6 +44,7 @@ SRCS = fxp_init.c\
 	fxp_del.c\
 	fxp_compact.c\
 	fxp_mul_fxp.c\
+	fxp_strassen_mul_fxp.c\
 	fxp_round.c\
 
 # objs

@@ -19,6 +19,7 @@ int		main(void)
 	test_fxp_mul_fxp_case5();
 	test_fxp_mul_fxp_case6();
 	test_fxp_mul_fxp_case7();
+	test_fxp_mul_fxp_case8();
 
 	// fxp_round
 	test_fxp_round_case1();	

@@ -18,7 +18,7 @@ void		test_fxp_mul_fxp_case1(void)
 	a.e = -2;
 	b.e = -3;
 
-	res = fxp_mul_fxp(&a, &b, &c);
+	res = fxp_mul_fxp(&a, &b, &c, 1);
 
 	test(
 		res == FXP_SUCCESS,
@@ -79,7 +79,7 @@ void		test_fxp_mul_fxp_case2(void)
 	a.e = -12;
 	b.e = -14;
 
-	res = fxp_mul_fxp(&a, &b, &c);
+	res = fxp_mul_fxp(&a, &b, &c, 1);
 
 	test(
 		res == FXP_SUCCESS,
@@ -137,7 +137,7 @@ void		test_fxp_mul_fxp_case3(void)
 	a.e = -12;
 	b.e = -14;
 
-	res = fxp_mul_fxp(&a, &b, &c);
+	res = fxp_mul_fxp(&a, &b, &c, 1);
 
 	test(
 		res == FXP_SUCCESS,
@@ -193,7 +193,7 @@ void		test_fxp_mul_fxp_case4(void)
 	a.e = 0;
 	b.e = 0;
 
-	res = fxp_mul_fxp(&a, &b, &c);
+	res = fxp_mul_fxp(&a, &b, &c, 1);
 
 	test(
 		res == FXP_SUCCESS,
@@ -247,7 +247,7 @@ void		test_fxp_mul_fxp_case5(void)
 	a.e = 0;
 	b.e = -7;
 
-	res = fxp_mul_fxp(&a, &b, &c);
+	res = fxp_mul_fxp(&a, &b, &c, 1);
 
 	test(
 		res == FXP_SUCCESS,
@@ -306,7 +306,7 @@ void		test_fxp_mul_fxp_case6(void)
 	a.e = -12;
 	b.e = -14;
 
-	res = fxp_mul_fxp(&a, &b, &a);
+	res = fxp_mul_fxp(&a, &b, &a, 1);
 
 	test(
 		res == FXP_SUCCESS,
@@ -360,7 +360,7 @@ void		test_fxp_mul_fxp_case7(void)
 	a.e = -12;
 	b.e = -14;
 
-	res = fxp_mul_fxp(&a, &b, &b);
+	res = fxp_mul_fxp(&a, &b, &b, 1);
 
 	test(
 		res == FXP_SUCCESS,
@@ -385,6 +385,58 @@ void		test_fxp_mul_fxp_case7(void)
 
 	test(
 		b.e == -26,
+		"fxp_mul_fxp : b.e"
+	);
+
+	fxp_del(&a);
+	fxp_del(&b);
+}
+
+// case no compact 12345678.0 * 98765.0
+void		test_fxp_mul_fxp_case8(void)
+{
+	printf(KYEL "test_fxp_mul_fxp_case8\n" KNRM);
+	t_fixedpoint	a;
+	t_fixedpoint	b;
+	int				res;
+	unsigned char	expected[6] = { 0x76, 0x39, 0x30, 0xe5, 0x1b, 0x01 };
+
+	fxp_init(&a);
+	fxp_init(&b);
+	bi_push(&(a.num), 0x4e);
+	bi_push(&(a.num), 0x61);
+	bi_push(&(a.num), 0xbc);
+	bi_push(&(b.num), 0xcd);
+	bi_push(&(b.num), 0x81);
+	bi_push(&(b.num), 0x01);
+	a.e = 0;
+	b.e = 0;
+
+	res = fxp_mul_fxp(&a, &b, &b, 0);
+
+	test(
+		res == FXP_SUCCESS,
+		"fxp_mul_fxp : return value"
+	);
+
+	test(
+		b.num.sign == BI_SIGN_POSITIVE,
+		"fxp_mul_fxp : b.num.sign"
+	);
+
+	test(
+		b.num.occupied == 6,
+		"fxp_mul_fxp : b.num.occupied"
+	);
+
+	for (size_t i=0; i < b.num.occupied; i++)
+		test(
+			b.num.data[i] == expected[i],
+			"fxp_mul_fxp : b.num.data[i]"
+		);
+
+	test(
+		b.e == 0,
 		"fxp_mul_fxp : b.e"
 	);
 
