@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fxp_compact.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/24 16:09:32 by jebae             #+#    #+#             */
+/*   Updated: 2019/10/24 16:09:59 by jebae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fixedpoint.h"
 
 static int		handle_fail(t_bigint *bcd)
@@ -6,7 +18,7 @@ static int		handle_fail(t_bigint *bcd)
 	return (FXP_FAIL);
 }
 
-int     		fxp_compact(t_fixedpoint *fxp)
+int				fxp_compact(t_fixedpoint *fxp)
 {
 	size_t		shift;
 	t_bigint	bcd;
