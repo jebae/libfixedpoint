@@ -46,6 +46,10 @@ SRCS = fxp_init.c\
 	fxp_mul_fxp.c\
 	fxp_strassen_mul_fxp.c\
 	fxp_round.c\
+	fxp_double_get_int_part.c\
+	fxp_double_get_fraction_part.c\
+	fxp_ldouble_get_int_part.c\
+	fxp_ldouble_get_fraction_part.c\
 
 # objs
 OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))

@@ -15,6 +15,7 @@
 
 # include "bigint.h"
 # include "libft.h"
+# include <stdio.h>
 
 # define FXP_SUCCESS		0
 # define FXP_FAIL			1
@@ -41,5 +42,26 @@ int				fxp_strassen_mul_fxp(
 	int compact
 );
 int				fxp_round(t_fixedpoint *fxp, long long r, t_fixedpoint *res);
+int				fxp_double_get_int_part(
+	short exponent,
+	unsigned long long mantissa,
+	t_fixedpoint *int_part
+);
+int				fxp_get_reciprocal(t_fixedpoint *recip, size_t num_bits);
+int				fxp_double_get_fraction_part(
+	short exponent,
+	unsigned long long mantissa,
+	t_fixedpoint *fraction_part
+);
+int				fxp_ldouble_get_int_part(
+	short exponent,
+	unsigned long long mantissa,
+	t_fixedpoint *int_part
+);
+int				fxp_ldouble_get_fraction_part(
+	short exponent,
+	unsigned long long mantissa,
+	t_fixedpoint *fraction_part
+);
 
 #endif

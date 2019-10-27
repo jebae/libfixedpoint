@@ -49,5 +49,42 @@ int		main(void)
 	test_fxp_round_case25();
 	test_fxp_round_case26();
 	test_fxp_round_case27();
+
+	// fxp_double_get_int_part
+	test_fxp_double_get_int_part_case1();
+	test_fxp_double_get_int_part_case2();
+	test_fxp_double_get_int_part_case3();
+	test_fxp_double_get_int_part_case4();
+	test_fxp_double_get_int_part_case5();
+	test_fxp_double_get_int_part_case6();
+
+	// fxp_double_get_fraction_part
+	test_fxp_double_get_fraction_part_case1();
+	test_fxp_double_get_fraction_part_case2();
+	test_fxp_double_get_fraction_part_case3();
+	test_fxp_double_get_fraction_part_case4();
+	test_fxp_double_get_fraction_part_case5();
+	test_fxp_double_get_fraction_part_case6();
+	test_fxp_double_get_fraction_part_case7();
+	test_fxp_double_get_fraction_part_case8();
+	test_fxp_double_get_fraction_part_case9();
+
+	// fxp_ldouble_get_int_part
+	test_fxp_ldouble_get_int_part_case1();
+	test_fxp_ldouble_get_int_part_case2();
+	test_fxp_ldouble_get_int_part_case3();
+	test_fxp_ldouble_get_int_part_case4();
+	test_fxp_ldouble_get_int_part_case5();
+	test_fxp_ldouble_get_int_part_case6();
+
+	// fxp_ldouble_get_fraction_part
+	test_fxp_ldouble_get_fraction_part_case1();
+	test_fxp_ldouble_get_fraction_part_case2();
+	test_fxp_ldouble_get_fraction_part_case3();
+	test_fxp_ldouble_get_fraction_part_case4();
+	test_fxp_ldouble_get_fraction_part_case5();
+	test_fxp_ldouble_get_fraction_part_case6();
+	test_fxp_ldouble_get_fraction_part_case7();
+	test_fxp_ldouble_get_fraction_part_case8();
 	// while (1);
 }

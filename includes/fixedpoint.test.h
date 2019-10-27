@@ -25,7 +25,7 @@ void		test_fxp_mul_fxp_case7(void);
 void		test_fxp_mul_fxp_case8(void);
 
 /*
-** tes fxp_compact
+** test fxp_compact
 */
 void		test_fxp_compact_case1(void);
 void		test_fxp_compact_case2(void);
@@ -36,7 +36,7 @@ void		test_fxp_compact_case6(void);
 void		test_fxp_compact_case7(void);
 
 /*
-** tes fxp_round
+** test fxp_round
 */
 void		test_fxp_round_case1(void);
 void		test_fxp_round_case2(void);
@@ -65,5 +65,50 @@ void		test_fxp_round_case24(void);
 void		test_fxp_round_case25(void);
 void		test_fxp_round_case26(void);
 void		test_fxp_round_case27(void);
+
+/*
+** test fxp_double_get_int_part
+*/
+void		test_fxp_double_get_int_part_case1(void);
+void		test_fxp_double_get_int_part_case2(void);
+void		test_fxp_double_get_int_part_case3(void);
+void		test_fxp_double_get_int_part_case4(void);
+void		test_fxp_double_get_int_part_case5(void);
+void		test_fxp_double_get_int_part_case6(void);
+
+/*
+** test fxp_double_get_fraction_part
+*/
+void		test_fxp_double_get_fraction_part_case1(void);
+void		test_fxp_double_get_fraction_part_case2(void);
+void		test_fxp_double_get_fraction_part_case3(void);
+void		test_fxp_double_get_fraction_part_case4(void);
+void		test_fxp_double_get_fraction_part_case5(void);
+void		test_fxp_double_get_fraction_part_case6(void);
+void		test_fxp_double_get_fraction_part_case7(void);
+void		test_fxp_double_get_fraction_part_case8(void);
+void		test_fxp_double_get_fraction_part_case9(void);
+
+/*
+** test fxp_ldouble_get_int_part
+*/
+void		test_fxp_ldouble_get_int_part_case1(void);
+void		test_fxp_ldouble_get_int_part_case2(void);
+void		test_fxp_ldouble_get_int_part_case3(void);
+void		test_fxp_ldouble_get_int_part_case4(void);
+void		test_fxp_ldouble_get_int_part_case5(void);
+void		test_fxp_ldouble_get_int_part_case6(void);
+
+/*
+** test fxp_ldouble_get_fraction_part
+*/
+void		test_fxp_ldouble_get_fraction_part_case1(void);
+void		test_fxp_ldouble_get_fraction_part_case2(void);
+void		test_fxp_ldouble_get_fraction_part_case3(void);
+void		test_fxp_ldouble_get_fraction_part_case4(void);
+void		test_fxp_ldouble_get_fraction_part_case5(void);
+void		test_fxp_ldouble_get_fraction_part_case6(void);
+void		test_fxp_ldouble_get_fraction_part_case7(void);
+void		test_fxp_ldouble_get_fraction_part_case8(void);
 
 #endif
