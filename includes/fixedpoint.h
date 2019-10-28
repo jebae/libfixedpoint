@@ -6,7 +6,7 @@
 /*   By: jebae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 16:07:58 by jebae             #+#    #+#             */
-/*   Updated: 2019/10/24 16:08:48 by jebae            ###   ########.fr       */
+/*   Updated: 2019/10/28 14:43:28 by jebae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "bigint.h"
 # include "libft.h"
-# include <stdio.h>
 
 # define FXP_SUCCESS		0
 # define FXP_FAIL			1
