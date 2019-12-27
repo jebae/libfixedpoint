@@ -24,7 +24,7 @@ root/
   libfixedpoint/
 ```
 
-instead of put libft and libbigint in same path with libbigint, you can modify [Makefile](./Makefile) macro `LIBFT_PATH = ../libft`, `BIGINT_PATH = ../libbigint` with your path.
+Instead of put libft and libbigint in same path with libfixedpoint, you can modify [Makefile](./Makefile) macro `LIBFT_PATH = ../libft`, `BIGINT_PATH = ../libbigint` with your path.
 
 <br><br>
 
@@ -80,7 +80,7 @@ int fxp_compact(t_fixedpoint *fxp);
 ```
 
 `fxp_compact` is made to economize memory removing trailing zeros. 
-3.140000 is 3140000 x 10^(-6). This is saved in `t_fixedpoint` with 0x2fe9a0 as `num` and -6 as `e`. After with compact fixed point is saved with 0x13a as `num` and -2 as `e`. It returns `FXP_FAIL` if there is error from memory allocating else `FXP_SUCCESS`.
+3.140000 is 3140000 x 10^(-6). This is saved in `t_fixedpoint` with 0x2fe9a0 as `num` and -6 as `e`. After compacting fixed point is saved with 0x13a as `num` and -2 as `e`. It returns `FXP_FAIL` if there is error from memory allocating else `FXP_SUCCESS`.
 
 <br>
 
@@ -93,7 +93,7 @@ int fxp_mul_fxp(
 );
 ```
 
-`fxp_mul_fxp` follows `a * b = c`. If compact 0, no compacting to result `c`. It returns `FXP_FAIL` if there is error from memory allocating else `FXP_SUCCESS`.
+`fxp_mul_fxp` follows `a * b = c`. If `compact` is 0, no compacting to result `c`. It returns `FXP_FAIL` if there is error from memory allocating else `FXP_SUCCESS`.
 
 <br>
 
